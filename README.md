@@ -9,10 +9,8 @@ Welcome to the code repository for my personal portfolio. This is a fully dynami
 
 ### [**View Live Site**](https://rukrishna.vercel.app) 🚀
 
-*(Please replace the link above with your final deployed URL!)*
 
 ![Krishna Purwar's Portfolio Screenshot](.assets/portfolio_ss.png)
-*(**Todo:** Replace the image above with a real screenshot of your deployed site!)*
 
 ---
 
