@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
-import fontFamily  from "tailwindcss/defaultTheme"; // Import defaultTheme
+import defaultTheme from "tailwindcss/defaultTheme"; 
 
 const config = {
-  darkMode: "class", // UPDATED: Changed from ["class"] to "class"
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -19,11 +19,7 @@ const config = {
       },
     },
     extend: {
-      // NEW: Add fontFamily
-      fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
-        mono: ["var(--font-mono)", ...fontFamily.mono],
-      },
+      // Shadcn/ui theme settings
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -64,31 +60,53 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      // UPDATED: Renamed animations
+
+      // 2. THIS IS THE CORRECT USAGE
+      fontFamily: {
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
+      },
+
+      // All your existing animations
       keyframes: {
+        "background-shine": {
+          "0%": { backgroundPosition: "0% 0%" },
+          "50%": { backgroundPosition: "100% 100%" },
+          "100%": { backgroundPosition: "0% 0%" },
+        },
         "grid-flow": {
-          "0%": { "background-position": "0% 50%" },
-          "100%": { "background-position": "100% 50%" },
+          "0%": { "background-position": "0% 0%" },
+          "100%": { "background-position": "100% 100%" },
         },
         "text-shine": {
           "0%": { "background-position": "0% 50%" },
           "100%": { "background-position": "100% 50%" },
         },
-        wave: {
-          "0%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(10px)" },
-          "100%": { transform: "translateY(0px)" },
+        "wave-horizontal-flow": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
         },
-        "scroll-left": {
-          "0%": { transform: "translateX(0)" },
+        "flow-right": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        "flow-left": {
+          "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-100%)" },
         },
       },
       animation: {
-        "grid-flow": "grid-flow 15s linear infinite",
-        "text-shine": "text-shine 5s linear infinite",
-        wave: "wave 5s ease-in-out infinite",
-        "scroll-left": "scroll-left 40s linear infinite",
+        "background-shine": "background-shine 6s linear infinite",
+        "grid-flow": "grid-flow 10s linear infinite",
+        "text-shine": "text-shine 3s linear infinite",
+        "wave-horizontal-flow": "wave-horizontal-flow 10s linear infinite",
+        "flow-right": "flow-right 40s linear infinite",
+        "flow-left": "flow-left 40s linear infinite",
+      },
+      backgroundSize: {
+        "300%": "300%",
+        "size-[3rem_3rem]": "3rem 3rem",
+        "size-[200%_auto]": "200% auto",
       },
     },
   },
