@@ -11,9 +11,7 @@ const TAGLINES = [
 ];
 
 const Hero = () => {
-  
-
-  //For typer motion of the tagline.
+  //Typer motion logic data.
   const [taglineIndex, setTaglineIndex] = useState(0);
   const [currentTagline, setCurrentTagline] = useState(TAGLINES[0]);
   const [displayedTagline, setDisplayedTagline] = useState("");
@@ -25,13 +23,17 @@ const Hero = () => {
 
     const type = () => {
       if (isDeleting) {
-        setDisplayedTagline(currentTagline.substring(0, displayedTagline.length - 1));
+        setDisplayedTagline(
+          currentTagline.substring(0, displayedTagline.length - 1)
+        );
         if (displayedTagline === "") {
           setIsDeleting(false);
           setTaglineIndex((prev) => (prev + 1) % TAGLINES.length);
         }
       } else {
-        setDisplayedTagline(currentTagline.substring(0, displayedTagline.length + 1));
+        setDisplayedTagline(
+          currentTagline.substring(0, displayedTagline.length + 1)
+        );
         if (displayedTagline === currentTagline) {
           setTimeout(() => setIsDeleting(true), delay);
         }
@@ -47,19 +49,12 @@ const Hero = () => {
     setCurrentTagline(TAGLINES[taglineIndex]);
   }, [taglineIndex]);
 
-  //End of typing logic.
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   // 2. Create transformed values for each layer.
-  // We map the mouse position (e.g., 0 to 1000 pixels) to a movement range (e.g., -15px to 15px).
-
-  // Text layer (moves the most)
   const textX = useTransform(x, [0, 1000], [-30, 30]);
   const textY = useTransform(y, [0, 1000], [-20, 20]);
-
-  // Grid layer (moves the least)
   const gridX = useTransform(x, [0, 1000], [-15, 15]);
   const gridY = useTransform(y, [0, 1000], [-10, 10]);
 
@@ -69,16 +64,24 @@ const Hero = () => {
     x.set(e.clientX);
     y.set(e.clientY);
   };
-  
-  // End of Parallax Logic.
-  
+
+  // Check for touch device to disable parallax on mobile
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined" && "ontouchstart" in window) {
+      setIsTouchDevice(true);
+    }
+  }, []);
+
+  // End of Parallax Logic
 
   return (
     <section
       id="home"
       className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
       // 4. Listen for mouse movement on the whole section
-      onMouseMove={handleMouseMove}
+
+      onMouseMove={!isTouchDevice ? handleMouseMove : undefined}
     >
       {/* Background Grid */}
       {/* 5. Converted to motion.div and added style/transition props */}
@@ -88,10 +91,14 @@ const Hero = () => {
           "animate-grid-flow bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)]",
           "bg-size-[3rem_3rem]"
         )}
-        style={{
-          x: gridX,
-          y: gridY,
-        }}
+        style={
+          !isTouchDevice
+            ? {
+                x: gridX,
+                y: gridY,
+              }
+            : {}
+        }
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       />
 
@@ -99,10 +106,14 @@ const Hero = () => {
       {/* 6. Converted to motion.div and added style/transition props */}
       <motion.div
         className="container relative z-10 flex flex-col items-center justify-center px-4 md:px-6"
-        style={{
-          x: textX,
-          y: textY,
-        }}
+        style={
+          !isTouchDevice
+            ? {
+                x: textX,
+                y: textY,
+              }
+            : {}
+        }
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
         <h1
@@ -110,7 +121,8 @@ const Hero = () => {
             // The font-mono class is correct
             "font-mono text-5xl font-bold tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-9xl",
             "bg-linear-to-r from-primary via-purple-400 to-primary",
-            "animate-text-shine bg-size-[200%_auto] bg-clip-text text-transparent"
+            "animate-text-shine bg-size-[200%_auto] bg-clip-text text-transparent",
+            "text-center"
           )}
         >
           Krishna Purwar
@@ -122,6 +134,7 @@ const Hero = () => {
         </p>
       </motion.div>
 
+      {/* S-Wave SVG */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
         <div
           className="relative flex w-[200%] animate-[wave-horizontal-flow_10s_linear_infinite]"
@@ -140,7 +153,7 @@ const Hero = () => {
             ></path>
           </svg>
           <svg
-            className="h-auto w-1/2"
+            className="h-auto w-12"
             viewBox="0 0 1440 100"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
