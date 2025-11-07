@@ -1,22 +1,83 @@
-import { Inter, JetBrains_Mono } from "next/font/google"; // Import JetBrains_Mono
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-import CustomCursor from "@/components/ui/CustomCursor"; // <-- 1. IMPORT
+import CustomCursor from "@/components/ui/CustomCursor";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
 
-// Setup Inter (our main font)
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans", // Create CSS variable
+  variable: "--font-sans",
 });
 
-// Setup JetBrains_Mono (our heading font)
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-mono", // Create CSS variable
+  variable: "--font-mono",
 });
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://rukrishna.vercel.app"), 
+
+  title: "Krishna Purwar | Software Developer",
+  description:
+    "Software Developer building modern, intelligent applications. First Year MCA Student at NIT Jamshedpur.",
+
+  keywords: [
+    "Krishna Purwar",
+    "Software Developer",
+    "Web Developer",
+    "React",
+    "Next.js",
+    "FastAPI",
+    "Portfolio",
+    "NIT Jamshedpur",
+    "MCA",
+    "Jamshedpur",
+  ],
+
+  authors: [{ name: "Krishna Purwar", url: "https://rukrishna.vercel.app" }],
+  creator: "Krishna Purwar",
+
+  openGraph: {
+    title: "Krishna Purwar | Software Developer",
+    description:
+      "Software Developer building modern, intelligent applications.",
+    url: "https://rukrishna.vercel.app", 
+    siteName: "Krishna Purwar's Portfolio",
+    images: [
+      {
+        url: "/og-image.png", 
+        width: 1200,
+        height: 630,
+        alt: "Krishna Purwar - Software Developer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Krishna Purwar | Software Developer",
+    description:
+      "Software Developer building modern, intelligent applications.",
+    images: ["/og-image.png"], 
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -29,7 +90,6 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-white font-sans antialiased dark",
-          // Apply both font variables to the body
           "bg-zinc-900 text-white scroll-smooth",
           inter.variable,
           jetbrainsMono.variable
@@ -41,7 +101,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* This is the new animated background from Resolution 3 */}
           <div
             className={cn(
               "fixed inset-0 -z-10 h-full w-full",
@@ -49,7 +108,7 @@ export default function RootLayout({
               "animate-[background-shine_6s_linear_infinite]"
             )}
           />
-          <CustomCursor /> {/* <-- 2. ADD COMPONENT */}
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

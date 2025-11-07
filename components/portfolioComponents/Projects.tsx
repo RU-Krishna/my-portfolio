@@ -14,12 +14,10 @@ import { ExternalLink } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import SectionTitle from "./SectionTitle";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion"; // 1. Import motion
-import { fadeInUp, staggerChildren } from "@/lib/animation"; // 2. Import our animations
+import { motion } from "framer-motion";
+import { fadeInUp, staggerChildren } from "@/lib/animation";
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  // This component's code doesn't need to change,
-  // as we will wrap it in the map function below.
   return (
     <Card
       className={cn(
@@ -76,17 +74,15 @@ const Projects = () => {
     <section id="projects" className="w-full py-12">
       <div className="container px-4 md:px-6">
         <SectionTitle title="Projects" />
-        {/* 3. This is the PARENT for staggering the cards */}
+
         <motion.div
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8"
-          // 4. Apply the stagger parent animation
           variants={staggerChildren(0.2)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           {PROJECTS.map((project) => (
-            // 5. This is the CHILD (the card) that fades in
             <motion.div key={project.title} variants={fadeInUp(0.1)}>
               <ProjectCard project={project} />
             </motion.div>

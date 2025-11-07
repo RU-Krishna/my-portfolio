@@ -1,4 +1,4 @@
-"use client"; // We need this for Framer Motion
+"use client"; //For Framer motion.
 
 import { CONTACTS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -15,13 +15,14 @@ const Footer = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
       >
-        {/* UPDATED: Added dynamic copyright */}
+        
+        {/** Added Dynamic Copyright Content(Year changes) */}
         <p className="text-sm text-zinc-400">
           © {new Date().getFullYear()} Krishna Purwar. All rights reserved.
         </p>
         <div className="flex items-center gap-2">
           {CONTACTS.map((link) => {
-            // UPDATED: Removed the filter that hid the email icon
+          
             return (
               <Button
                 key={link.label}

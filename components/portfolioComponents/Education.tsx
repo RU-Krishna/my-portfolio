@@ -1,4 +1,4 @@
-"use client"; // 1. Add "use client"
+"use client"; //For framer motion
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,8 +13,9 @@ import { EDUCATION, type Education as EducationType } from "@/lib/data";
 import { Building, ExternalLink } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion"; // 2. Import motion
-import { fadeInUp, staggerChildren } from "@/lib/animation"; // 3. Import our animations
+
+import { motion } from "framer-motion"; 
+import { fadeInUp, staggerChildren } from "@/lib/animation"; 
 
 const EducationCard = ({ edu }: { edu: EducationType }) => {
   return (
@@ -53,7 +54,6 @@ const EducationCard = ({ edu }: { edu: EducationType }) => {
           </a>
         </Button>
       </CardFooter>
-      {/* 4. TYPO FIX: Was </CrdFooter> */}
     </Card>
   );
 };
@@ -63,17 +63,18 @@ const Education = () => {
     <section id="education" className="w-full py-12">
       <div className="container px-4 md:px-6">
         <SectionTitle title="Education" />
-        {/* 5. This is the PARENT for staggering the cards */}
+        {/* Parent for staggering the card*/}
         <motion.div
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8"
-          // 6. Apply the stagger parent animation
+          // Stagger Parent Animation.
           variants={staggerChildren(0.2)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           {EDUCATION.map((edu) => (
-            // 7. This is the CHILD (the card) that fades in
+
+              //Child that fades in.
             <motion.div key={edu.degree} variants={fadeInUp(0.1)}>
               <EducationCard edu={edu} />
             </motion.div>

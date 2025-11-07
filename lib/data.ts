@@ -1,3 +1,5 @@
+
+//Icons we are going to use.
 import {
   Mail,
   LucideProps,
@@ -6,8 +8,8 @@ import {
   Package,
   GraduationCap,
   Phone,
-  ExternalLink,
 } from "lucide-react";
+
 import { FaJava } from "react-icons/fa";
 import {
   SiGithub,
@@ -34,16 +36,15 @@ import {
 import { VscVscode } from "react-icons/vsc";
 import { IconType } from "react-icons";
 
-// ============================================================================
-// TYPES
-// ============================================================================
 
+//Navigation Link Structure.
 export type NavLink = {
   label: string;
   href: string;
   icon: React.ComponentType<LucideProps>;
 };
 
+//Contact Data Structure.
 export type Contact = {
   label: string;
   value: string;
@@ -51,6 +52,7 @@ export type Contact = {
   link: string;
 };
 
+//Project Info Structure.
 export type Project = {
   title: string;
   description: string;
@@ -59,6 +61,7 @@ export type Project = {
   linkType: "github" | "live";
 };
 
+//Education Info Structure.
 export type Education = {
   college: string;
   link: string;
@@ -66,26 +69,30 @@ export type Education = {
   timeline: string;
 };
 
+//Skill Info Structure.
 export type Skill = {
   name: string;
   icon: IconType;
   color: string;
 };
 
+//Skillset Info Structure.
 export type SkillSet = {
   title: string;
   skills: Skill[];
 };
 
-// ============================================================================
-// DATA
-// ============================================================================
+
+// MY ACTUAL DATA.
 
 export const PROFILE_PICTURE = "/Krishna.jpeg";
+
 
 export const ABOUT_ME =
   "I'm a developer passionate about building applications that are both intelligent and user-friendly. My journey started in mobile development with Android, and my curiosity has led me to explore the full stack, from fast backends with FastAPI to dynamic frontends with React. I'm especially excited by the potential of integrating AI, like the Gemini API, to create smarter and more powerful web experiences.";
 
+
+//Links to different sections of the page.
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "#home", icon: Home },
   { label: "About", href: "#about", icon: User },
@@ -94,6 +101,8 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Contact", href: "#contact", icon: Phone },
 ];
 
+
+//Info about the contacts section of the page.
 export const CONTACTS: Contact[] = [
   {
     label: "Email",
@@ -115,6 +124,7 @@ export const CONTACTS: Contact[] = [
   },
 ];
 
+//Info about the project section of the page.
 export const PROJECTS: Project[] = [
   {
     title: "ASK AI App",
@@ -134,6 +144,8 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+
+//Info about the education section of the page.
 export const EDUCATION: Education[] = [
   {
     college: "NIT Jamshedpur, Jamshedpur, Jharkhand",
@@ -149,6 +161,8 @@ export const EDUCATION: Education[] = [
   },
 ];
 
+
+//Info about the skillset section of the page.
 export const SKILL_SETS: SkillSet[] = [
   {
     title: "Languages I have worked with",
@@ -157,13 +171,7 @@ export const SKILL_SETS: SkillSet[] = [
       { name: "Java", icon: FaJava, color: "#007396" },
       { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" },
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-      //
-      // THIS IS THE FIX. It was "name:g:" and is now "name:"
-      //
       { name: "CSS3", icon: SiCss3, color: "#1572B6" },
-      //
-      //
-      //
       { name: "Python", icon: SiPython, color: "#3776AB" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
     ],

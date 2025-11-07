@@ -11,7 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-// 1. Import motion and our animations
+
 import { motion } from "framer-motion";
 import { fadeInUp, staggerChildren } from "@/lib/animation";
 
@@ -38,7 +38,7 @@ const Contact = () => {
       <div className="container flex flex-col items-center px-4 md:px-6">
         <SectionTitle title="Get In Touch" />
 
-        {/* 2. NEW: Stagger parent for the content *below* the title */}
+        {/* Stagger parent for the content below the title.*/}
         <motion.div
           className="flex flex-col items-center gap-4" // We move gap-4 here
           variants={staggerChildren(0.2)}
@@ -46,7 +46,7 @@ const Contact = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {/* 3. CHILD 1: The Paragraph */}
+          {/* For paragraph. */}
           <motion.p
             className="max-w-lg text-center text-zinc-300"
             variants={fadeInUp(0.1)}
@@ -55,7 +55,7 @@ const Contact = () => {
             say hi, I&apos;ll try my best to get back to you!
           </motion.p>
 
-          {/* 4. CHILD 2: The Email Button (wrapped in a motion.div) */}
+          {/* Copy Mail Button. */}
           <motion.div variants={fadeInUp(0.1)}>
             <TooltipProvider delayDuration={100}>
               <Tooltip>

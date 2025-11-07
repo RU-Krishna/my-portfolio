@@ -2,8 +2,8 @@
 
 import { SKILL_SETS, type Skill } from "@/lib/data";
 import SectionTitle from "./SectionTitle";
-import { motion } from "framer-motion"; // 1. Import motion
-import { fadeInUp, staggerChildren } from "@/lib/animation"; // 2. Import our animations
+import { motion } from "framer-motion";
+import { fadeInUp, staggerChildren } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 
 const Skills = () => {
@@ -12,24 +12,22 @@ const Skills = () => {
       <div className="container px-4 md:px-6">
         <SectionTitle title="My Tech Stack" />
 
-        {/* 3. This is the PARENT for each SKILL SET */}
         <motion.div
           className="grid grid-cols-1 gap-8"
-          variants={staggerChildren(0.2)} // Stagger each set
+          variants={staggerChildren(0.2)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           {SKILL_SETS.map((set) => (
-            // 4. This is the CHILD for each set (fades in)
             <motion.div key={set.title} variants={fadeInUp(0.2)}>
               <h3 className="mb-4 text-xl font-semibold text-zinc-100">
                 {set.title}
               </h3>
-              {/* 5. This is the PARENT for each PILL */}
+
               <motion.div
                 className="flex flex-wrap gap-2"
-                variants={staggerChildren(0.1)} // Stagger each pill
+                variants={staggerChildren(0.1)}
               >
                 {set.skills.map((skill) => (
                   <SkillPill key={skill.name} skill={skill} />
@@ -43,7 +41,6 @@ const Skills = () => {
   );
 };
 
-// 6. This is the CHILD for each pill (fades in)
 const SkillPill = ({ skill }: { skill: Skill }) => {
   return (
     <motion.div
@@ -56,7 +53,7 @@ const SkillPill = ({ skill }: { skill: Skill }) => {
         "hover:shadow-lg hover:shadow-primary/30",
         "backdrop-blur-lg"
       )}
-      variants={fadeInUp(0.1)} // Animate each pill
+      variants={fadeInUp(0.1)}
     >
       <skill.icon
         className="h-5 w-5"

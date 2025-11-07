@@ -52,7 +52,7 @@ const Header = () => {
         "flex items-center justify-center gap-4 px-6 py-3",
         "rounded-full border border-zinc-700",
         /*
-          UPDATED: Made the blur stronger and background more transparent
+          Made the blur stronger and background more transparent
         */
         "bg-zinc-950/50 backdrop-blur-lg"
       )}

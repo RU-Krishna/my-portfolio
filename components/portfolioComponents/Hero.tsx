@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-// NEW: Import Framer Motion hooks
+
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const TAGLINES = [
@@ -11,9 +11,9 @@ const TAGLINES = [
 ];
 
 const Hero = () => {
-  //
-  // YOUR EXISTING TYPING LOGIC (UNCHANGED)
-  //
+  
+
+  //For typer motion of the tagline.
   const [taglineIndex, setTaglineIndex] = useState(0);
   const [currentTagline, setCurrentTagline] = useState(TAGLINES[0]);
   const [displayedTagline, setDisplayedTagline] = useState("");
@@ -46,14 +46,9 @@ const Hero = () => {
   useEffect(() => {
     setCurrentTagline(TAGLINES[taglineIndex]);
   }, [taglineIndex]);
-  //
-  // END OF TYPING LOGIC
-  //
 
-  //
-  // NEW: 3D PARALLAX LOGIC
-  //
-  // 1. Create motion values to track mouse position
+  //End of typing logic.
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -74,9 +69,9 @@ const Hero = () => {
     x.set(e.clientX);
     y.set(e.clientY);
   };
-  //
-  // END OF PARALLAX LOGIC
-  //
+  
+  // End of Parallax Logic.
+  
 
   return (
     <section
@@ -127,7 +122,6 @@ const Hero = () => {
         </p>
       </motion.div>
 
-      {/* S-Wave SVG (UNCHANGED - it should not move with parallax) */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
         <div
           className="relative flex w-[200%] animate-[wave-horizontal-flow_10s_linear_infinite]"
